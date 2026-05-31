@@ -42,14 +42,14 @@ fn dies_bad_name() -> Result<()> {
         .args(["--name", "*.csv"])
         .assert()
         .failure()
-        .stderr(predicate::str::contains("error: invalid value '*.csv'"));
+        .stderr(predicate::str::contains("invalid --name \"*.csv\""));
     Ok(())
 }
 
 // --------------------------------------------------
 #[test]
 fn dies_bad_type() -> Result<()> {
-    let expected = "error: invalid value 'x' for '--type [<TYPE>...]'";
+    let expected = "'x' isn't a valid value for '--type";
     Command::cargo_bin(PRG)?
         .args(["--type", "x"])
         .assert()
